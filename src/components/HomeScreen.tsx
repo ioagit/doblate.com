@@ -1,5 +1,16 @@
 import { useState } from 'react';
 import type { StorageNotice } from '../hooks/useGame';
+import {
+  ArrowRightIcon,
+  BoltIcon,
+  ChartIcon,
+  LockIcon,
+  RefreshIcon,
+  StarIcon,
+} from './icons';
+import { useSound } from '../hooks/useSound';
+
+const TRAIL = ['1', '2', '4', '8', '16'];
 
 interface HomeScreenProps {
   hasProgress: boolean;
@@ -19,6 +30,7 @@ export const HomeScreen = ({
   onDismissNotice,
 }: HomeScreenProps) => {
   const [confirmReset, setConfirmReset] = useState(false);
+  const play = useSound();
 
   return (
     <section className="panel home-hero" aria-labelledby="home-title">
@@ -35,34 +47,95 @@ export const HomeScreen = ({
         </div>
       )}
 
+      <p className="kicker">
+        <span className="kicker-icon" aria-hidden="true">
+          <BoltIcon />
+        </span>
+        El juego de duplicar
+      </p>
       <h1 id="home-title" className="home-title">
         Dó<span>blate</span>
       </h1>
+
+      <div className="doubling-trail" aria-hidden="true">
+        {TRAIL.map((value) => (
+          <span key={value} className="trail-bubble">
+            {value}
+            <span className="trail-stars">
+              <StarIcon size={9} />
+              <StarIcon size={11} />
+              <StarIcon size={9} />
+            </span>
+          </span>
+        ))}
+        <span className="trail-bubble trail-bubble-locked">
+          <LockIcon />
+          <span className="trail-dots">•••</span>
+        </span>
+      </div>
+
       <p className="home-lead">
         Empieza en 1. Cada nivel te enseña un número con datos curiosos. Cuando explores
-        unos cuantos, el número se dobla. El crecimiento exponencial, jugado a tu ritmo.
+        unos cuantos, el número se dobla.
+        <strong className="lead-highlight">
+          El crecimiento exponencial, jugado a tu ritmo.
+        </strong>
       </p>
 
       <div className="home-actions">
         {hasProgress ? (
           <>
-            <button type="button" className="btn btn-primary" onClick={onContinue}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                play('unlock');
+                onContinue();
+              }}
+            >
               Continuar partida
+              <span className="btn-badge">
+                <ArrowRightIcon />
+              </span>
             </button>
-            <button type="button" className="btn btn-secondary" onClick={onProgress}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => {
+                play('pop');
+                onProgress();
+              }}
+            >
+              <span className="btn-icon-lead" aria-hidden="true">
+                <ChartIcon />
+              </span>
               Ver progreso
             </button>
             <button
               type="button"
               className="btn btn-ghost"
-              onClick={() => setConfirmReset(true)}
+              onClick={() => {
+                play('back');
+                setConfirmReset(true);
+              }}
             >
+              <RefreshIcon />
               Empezar de nuevo
             </button>
           </>
         ) : (
-          <button type="button" className="btn btn-primary" onClick={onStartFresh}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              play('unlock');
+              onStartFresh();
+            }}
+          >
             Empezar
+            <span className="btn-badge">
+              <ArrowRightIcon />
+            </span>
           </button>
         )}
       </div>
@@ -97,6 +170,7 @@ export const HomeScreen = ({
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
+                  play('reset');
                   setConfirmReset(false);
                   onStartFresh();
                 }}

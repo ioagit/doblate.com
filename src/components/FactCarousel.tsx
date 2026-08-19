@@ -8,6 +8,7 @@ import {
 } from 'react';
 import type { Fact } from '../types/game';
 import { categoryLabel } from '../utils/spanish';
+import { useSound } from '../hooks/useSound';
 
 interface FactCarouselProps {
   facts: Fact[];
@@ -26,6 +27,7 @@ export const FactCarousel = ({
   const startX = useRef<number | null>(null);
   const regionRef = useRef<HTMLDivElement>(null);
   const onFactViewedRef = useRef(onFactViewed);
+  const play = useSound();
 
   useEffect(() => {
     onFactViewedRef.current = onFactViewed;
@@ -39,9 +41,10 @@ export const FactCarousel = ({
     (index: number) => {
       if (facts.length === 0) return;
       const next = (index + facts.length) % facts.length;
+      play('tap');
       onPositionChange(next);
     },
-    [facts.length, onPositionChange],
+    [facts.length, onPositionChange, play],
   );
 
   const handlePrev = () => goTo(position - 1);

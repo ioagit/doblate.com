@@ -5,6 +5,8 @@ import {
   nivelesCompletados,
   pluralize,
 } from '../utils/spanish';
+import { ArrowRightIcon, CheckIcon, HomeIcon } from './icons';
+import { useSound } from '../hooks/useSound';
 
 interface ProgressScreenProps {
   progress: GameProgress;
@@ -19,6 +21,7 @@ export const ProgressScreen = ({
   onHome,
   onContinue,
 }: ProgressScreenProps) => {
+  const play = useSound();
   const factsDiscovered = Object.values(progress.factsViewed).reduce(
     (sum, list) => sum + list.length,
     0,
@@ -31,7 +34,7 @@ export const ProgressScreen = ({
 
   return (
     <section className="panel" aria-labelledby="progress-title">
-      <h2 id="progress-title" style={{ fontFamily: 'var(--font-display)', marginTop: 0 }}>
+      <h2 id="progress-title" className="progress-title">
         Tu progreso
       </h2>
 
@@ -58,7 +61,7 @@ export const ProgressScreen = ({
         </div>
       </div>
 
-      <h3 style={{ marginBottom: '0.75rem' }}>Números desbloqueados</h3>
+      <h3 className="progress-subtitle">Números desbloqueados</h3>
       <p className="challenge-prompt">
         Puedes revisitar cualquier nivel desbloqueado para explorar sus datos.
       </p>
@@ -72,20 +75,48 @@ export const ProgressScreen = ({
               type="button"
               className={`level-chip${isCurrent ? ' current' : ''}`}
               role="listitem"
-              onClick={() => onOpenLevel(exponent)}
+              onClick={() => {
+                play('pop');
+                onOpenLevel(exponent);
+              }}
               aria-label={`Abrir nivel ${shortNumberLabel(exponent)}${completed ? ', completado' : ''}`}
             >
               {shortNumberLabel(exponent)}
+              {completed && (
+                <span className="chip-check">
+                  <CheckIcon />
+                </span>
+              )}
             </button>
           );
         })}
       </div>
 
       <div className="level-actions">
-        <button type="button" className="btn btn-primary" onClick={onContinue}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => {
+            play('unlock');
+            onContinue();
+          }}
+        >
           Continuar partida
+          <span className="btn-badge">
+            <ArrowRightIcon />
+          </span>
         </button>
-        <button type="button" className="btn btn-secondary" onClick={onHome}>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => {
+            play('back');
+            onHome();
+          }}
+        >
+          <span className="btn-icon-lead" aria-hidden="true">
+            <HomeIcon />
+          </span>
           Inicio
         </button>
       </div>

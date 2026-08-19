@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { formatLevelNumber, shortNumberLabel } from '../utils/numberFormat';
 import { pickSuccessMessage } from '../utils/spanish';
+import { useSound } from '../hooks/useSound';
 
 interface DoublingAnimationProps {
   fromExponent: number;
@@ -21,6 +22,7 @@ export const DoublingAnimation = ({
   const message = pickSuccessMessage(fromExponent + from.digits);
   const finishedRef = useRef(false);
   const onFinishedRef = useRef(onFinished);
+  const play = useSound();
 
   useEffect(() => {
     onFinishedRef.current = onFinished;
@@ -28,6 +30,7 @@ export const DoublingAnimation = ({
 
   useEffect(() => {
     finishedRef.current = false;
+    play('double');
     const duration = reduceMotion ? REDUCED_MS : ANIMATION_MS;
     const timer = window.setTimeout(() => {
       if (finishedRef.current) return;
@@ -35,7 +38,7 @@ export const DoublingAnimation = ({
       onFinishedRef.current();
     }, duration);
     return () => window.clearTimeout(timer);
-  }, [fromExponent, reduceMotion]);
+  }, [fromExponent, play, reduceMotion]);
 
   return (
     <div
