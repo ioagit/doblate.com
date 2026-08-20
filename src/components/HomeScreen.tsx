@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import type { StorageNotice } from '../hooks/useGame';
+import { useRouter } from '../hooks/useRouter';
+import { LEVELS_PATH, PROGRESS_PATH, levelPath } from '../routes';
+import { MAX_EXPONENT } from '../types/game';
+import { exactValue } from '../utils/levelCopy';
+import { formatPowerOfTwo } from '../utils/numberFormat';
 import {
   ArrowRightIcon,
   BoltIcon,
@@ -8,28 +13,28 @@ import {
   RefreshIcon,
   StarIcon,
 } from './icons';
+import { Link } from './Link';
 import { useSound } from '../hooks/useSound';
 
 const TRAIL = ['1', '2', '4', '8', '16'];
 
 interface HomeScreenProps {
   hasProgress: boolean;
+  currentExponent: number;
   storageNotice: StorageNotice;
-  onContinue: () => void;
   onStartFresh: () => void;
-  onProgress: () => void;
   onDismissNotice: () => void;
 }
 
 export const HomeScreen = ({
   hasProgress,
+  currentExponent,
   storageNotice,
-  onContinue,
   onStartFresh,
-  onProgress,
   onDismissNotice,
 }: HomeScreenProps) => {
   const [confirmReset, setConfirmReset] = useState(false);
+  const { navigate } = useRouter();
   const play = useSound();
 
   return (
@@ -75,42 +80,47 @@ export const HomeScreen = ({
       </div>
 
       <p className="home-lead">
-        Empieza en 1. Cada nivel te enseña un número con datos curiosos. Cuando explores
-        unos cuantos, el número se dobla.
+        Empieza en 1. Cada nivel tiene su propia página con diez datos sobre el número.
+        Cuando lo hayas mirado, dóblalo y pasa al siguiente.
         <strong className="lead-highlight">
-          El crecimiento exponencial, jugado a tu ritmo.
+          {MAX_EXPONENT + 1} niveles, del 1 a {exactValue(MAX_EXPONENT)}.
         </strong>
       </p>
 
       <div className="home-actions">
-        {hasProgress ? (
+        <Link
+          to={levelPath(hasProgress ? currentExponent : 0)}
+          className="btn btn-primary"
+          onActivate={() => play('unlock')}
+        >
+          {hasProgress
+            ? `Continuar en ${formatPowerOfTwo(currentExponent)}`
+            : 'Empezar en 2⁰ = 1'}
+          <span className="btn-badge">
+            <ArrowRightIcon />
+          </span>
+        </Link>
+
+        <Link
+          to={LEVELS_PATH}
+          className="btn btn-secondary"
+          onActivate={() => play('pop')}
+        >
+          <span className="btn-icon-lead" aria-hidden="true">
+            <ChartIcon />
+          </span>
+          Ver las {MAX_EXPONENT + 1} potencias
+        </Link>
+
+        {hasProgress && (
           <>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => {
-                play('unlock');
-                onContinue();
-              }}
+            <Link
+              to={PROGRESS_PATH}
+              className="btn btn-ghost"
+              onActivate={() => play('tap')}
             >
-              Continuar partida
-              <span className="btn-badge">
-                <ArrowRightIcon />
-              </span>
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => {
-                play('pop');
-                onProgress();
-              }}
-            >
-              <span className="btn-icon-lead" aria-hidden="true">
-                <ChartIcon />
-              </span>
-              Ver progreso
-            </button>
+              Tu progreso
+            </Link>
             <button
               type="button"
               className="btn btn-ghost"
@@ -123,20 +133,6 @@ export const HomeScreen = ({
               Empezar de nuevo
             </button>
           </>
-        ) : (
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              play('unlock');
-              onStartFresh();
-            }}
-          >
-            Empezar
-            <span className="btn-badge">
-              <ArrowRightIcon />
-            </span>
-          </button>
         )}
       </div>
 
@@ -173,6 +169,7 @@ export const HomeScreen = ({
                   play('reset');
                   setConfirmReset(false);
                   onStartFresh();
+                  navigate(levelPath(0));
                 }}
               >
                 Sí, borrar y empezar

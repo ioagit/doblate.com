@@ -9,8 +9,9 @@ interface DoublingAnimationProps {
   onFinished: () => void;
 }
 
-const ANIMATION_MS = 2200;
-const REDUCED_MS = 400;
+// Short enough to feel like a transition into the next page, not a cutscene.
+const ANIMATION_MS = 1400;
+const REDUCED_MS = 300;
 
 export const DoublingAnimation = ({
   fromExponent,

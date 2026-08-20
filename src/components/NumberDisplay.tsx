@@ -19,6 +19,8 @@ export const NumberDisplay = ({
       <span>{pluralize(formatted.digits, 'dígito', 'dígitos')}</span>
     </div>
     <h1 id="level-number" className="number-value">
+      {/* The heading reads «2¹⁷ = 131 072» while the design shows only the value */}
+      <span className="sr-only">{formatted.power} = </span>
       {formatted.display}
     </h1>
     <p className="number-meta">

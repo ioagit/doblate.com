@@ -1,47 +1,42 @@
 import type { GameProgress } from '../types/game';
-import { shortNumberLabel } from '../utils/numberFormat';
+import { MAX_EXPONENT } from '../types/game';
+import { LEVELS_PATH, levelPath } from '../routes';
+import { exactValue, levelNumber } from '../utils/levelCopy';
+import { formatPowerOfTwo, shortNumberLabel } from '../utils/numberFormat';
 import {
   datosDescubiertos,
   nivelesCompletados,
   pluralize,
 } from '../utils/spanish';
-import { ArrowRightIcon, CheckIcon, HomeIcon } from './icons';
+import { ArrowRightIcon, CheckIcon, ChartIcon } from './icons';
+import { Breadcrumbs } from './Breadcrumbs';
+import { Link } from './Link';
 import { useSound } from '../hooks/useSound';
 
 interface ProgressScreenProps {
   progress: GameProgress;
-  onOpenLevel: (exponent: number) => void;
-  onHome: () => void;
-  onContinue: () => void;
+  factsDiscovered: number;
 }
 
-export const ProgressScreen = ({
-  progress,
-  onOpenLevel,
-  onHome,
-  onContinue,
-}: ProgressScreenProps) => {
+export const ProgressScreen = ({ progress, factsDiscovered }: ProgressScreenProps) => {
   const play = useSound();
-  const factsDiscovered = Object.values(progress.factsViewed).reduce(
-    (sum, list) => sum + list.length,
-    0,
-  );
-
   const unlocked = Array.from(
-    { length: progress.highestExponentUnlocked + 1 },
-    (_, i) => i,
+    { length: Math.min(progress.highestExponentUnlocked, MAX_EXPONENT) + 1 },
+    (_, index) => index,
   );
 
   return (
     <section className="panel" aria-labelledby="progress-title">
-      <h2 id="progress-title" className="progress-title">
+      <Breadcrumbs trail={[{ name: 'Inicio', to: '/' }, { name: 'Tu progreso' }]} />
+
+      <h1 id="progress-title" className="page-title">
         Tu progreso
-      </h2>
+      </h1>
 
       <div className="progress-grid">
         <div className="stat-card">
           Nivel actual
-          <strong>{progress.currentExponent + 1}</strong>
+          <strong>{levelNumber(progress.currentExponent)}</strong>
         </div>
         <div className="stat-card">
           Número más alto
@@ -61,25 +56,22 @@ export const ProgressScreen = ({
         </div>
       </div>
 
-      <h3 className="progress-subtitle">Números desbloqueados</h3>
+      <h2 className="section-title">Números desbloqueados</h2>
       <p className="challenge-prompt">
-        Puedes revisitar cualquier nivel desbloqueado para explorar sus datos.
+        Puedes volver a cualquier nivel: cada uno vive en su propia página.
       </p>
       <div className="level-chips" role="list">
         {unlocked.map((exponent) => {
           const completed = progress.completedLevels.includes(exponent);
           const isCurrent = exponent === progress.currentExponent;
           return (
-            <button
+            <Link
               key={exponent}
-              type="button"
+              to={levelPath(exponent)}
               className={`level-chip${isCurrent ? ' current' : ''}`}
               role="listitem"
-              onClick={() => {
-                play('pop');
-                onOpenLevel(exponent);
-              }}
-              aria-label={`Abrir nivel ${shortNumberLabel(exponent)}${completed ? ', completado' : ''}`}
+              onActivate={() => play('pop')}
+              aria-label={`Abrir ${formatPowerOfTwo(exponent)} igual a ${exactValue(exponent)}${completed ? ', completado' : ''}`}
             >
               {shortNumberLabel(exponent)}
               {completed && (
@@ -87,38 +79,32 @@ export const ProgressScreen = ({
                   <CheckIcon />
                 </span>
               )}
-            </button>
+            </Link>
           );
         })}
       </div>
 
       <div className="level-actions">
-        <button
-          type="button"
+        <Link
+          to={levelPath(progress.currentExponent)}
           className="btn btn-primary"
-          onClick={() => {
-            play('unlock');
-            onContinue();
-          }}
+          onActivate={() => play('unlock')}
         >
-          Continuar partida
+          Continuar en {formatPowerOfTwo(progress.currentExponent)}
           <span className="btn-badge">
             <ArrowRightIcon />
           </span>
-        </button>
-        <button
-          type="button"
+        </Link>
+        <Link
+          to={LEVELS_PATH}
           className="btn btn-secondary"
-          onClick={() => {
-            play('back');
-            onHome();
-          }}
+          onActivate={() => play('pop')}
         >
           <span className="btn-icon-lead" aria-hidden="true">
-            <HomeIcon />
+            <ChartIcon />
           </span>
-          Inicio
-        </button>
+          Todas las potencias
+        </Link>
       </div>
     </section>
   );

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /progreso/
+
+Sitemap: https://doblate.com/sitemap.xml

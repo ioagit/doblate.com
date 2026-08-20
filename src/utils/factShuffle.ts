@@ -31,37 +31,3 @@ export const shuffleWithSeed = <T>(items: readonly T[], seed: number): T[] => {
   return result;
 };
 
-export const factOrderSeed = (exponent: number): number =>
-  hashString(`doblate-facts-v1:${exponent}`);
-
-/**
- * Order in which a level reveals its facts.
- *
- * Curated facts sit at the start of a level's fact list, so when a level mixes
- * curated and generated facts each block is shuffled on its own. Otherwise a
- * single shuffle could bury the hand-written facts behind generated filler,
- * and players only need to see three facts to advance.
- */
-export const buildFactOrder = (
-  exponent: number,
-  length = 10,
-  curatedCount = length,
-): number[] => {
-  const indices = Array.from({ length }, (_, i) => i);
-  const seed = factOrderSeed(exponent);
-  const pivot = Math.min(Math.max(curatedCount, 0), length);
-
-  if (pivot === 0 || pivot === length) {
-    return shuffleWithSeed(indices, seed);
-  }
-
-  return [
-    ...shuffleWithSeed(indices.slice(0, pivot), seed),
-    ...shuffleWithSeed(indices.slice(pivot), seed ^ 0x9e3779b9),
-  ];
-};
-
-export const pickIndex = (seed: number, length: number): number => {
-  if (length <= 0) return 0;
-  return (createRng(seed)() * length) | 0;
-};

@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { GameProgress, Screen } from '../types/game';
-import { FACTS_PER_LEVEL, MIN_FACTS_TO_ADVANCE } from '../types/game';
-import { curatedFactCount } from '../utils/factEngine';
-import { buildFactOrder } from '../utils/factShuffle';
+import { useCallback, useEffect, useState } from 'react';
+import type { GameProgress } from '../types/game';
+import { FACTS_PER_LEVEL, MAX_EXPONENT } from '../types/game';
 import {
+  clampExponent,
   clearProgress,
   createInitialProgress,
   loadProgress,
@@ -12,219 +11,92 @@ import {
 
 export type StorageNotice = 'unavailable' | 'corrupted' | null;
 
-const ensureFactOrder = (
-  progress: GameProgress,
-  exponent: number,
-): GameProgress => {
-  const key = String(exponent);
-  if (progress.factOrders[key]?.length === FACTS_PER_LEVEL) return progress;
-  return {
-    ...progress,
-    factOrders: {
-      ...progress.factOrders,
-      [key]: buildFactOrder(
-        exponent,
-        FACTS_PER_LEVEL,
-        curatedFactCount(exponent),
-      ),
-    },
-    factPositions: {
-      ...progress.factPositions,
-      [key]: progress.factPositions[key] ?? 0,
-    },
-    factsViewed: {
-      ...progress.factsViewed,
-      [key]: progress.factsViewed[key] ?? [],
-    },
-  };
-};
-
-const persist = (progress: GameProgress): GameProgress => {
-  saveProgress(progress);
-  return progress;
-};
+const withLevel = (levels: number[], exponent: number): number[] =>
+  levels.includes(exponent)
+    ? levels
+    : [...levels, exponent].sort((a, b) => a - b);
 
 export const useGame = () => {
-  const initial = useMemo(() => loadProgress(), []);
-  const [progress, setProgress] = useState<GameProgress>(() =>
-    ensureFactOrder(initial.progress, initial.progress.currentExponent),
-  );
-  const [screen, setScreen] = useState<Screen>('home');
-  const [viewingExponent, setViewingExponent] = useState(
-    initial.progress.currentExponent,
-  );
-  const [storageNotice, setStorageNotice] = useState<StorageNotice>(
-    initial.ok ? null : initial.reason,
-  );
-  const [isRevisit, setIsRevisit] = useState(false);
-  const [doublingFrom, setDoublingFrom] = useState<number | null>(null);
+  // Starts from a clean object on both server and client: the saved game is
+  // read after mount so the first render always matches the prerendered HTML.
+  const [progress, setProgress] = useState<GameProgress>(createInitialProgress);
+  const [storageNotice, setStorageNotice] = useState<StorageNotice>(null);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    if (initial.ok && initial.fromStorage) {
-      setScreen('home');
-    }
-  }, [initial]);
-
-  const updateProgress = useCallback((updater: (prev: GameProgress) => GameProgress) => {
-    setProgress((prev) => {
-      const next = updater(prev);
-      if (next === prev) return prev;
-      return persist(next);
-    });
+    const result = loadProgress();
+    setProgress(result.progress);
+    setStorageNotice(result.ok ? null : result.reason);
+    setHydrated(true);
   }, []);
 
-  const openLevel = useCallback(
-    (exponent: number, revisit = false) => {
-      setIsRevisit(revisit);
-      setViewingExponent(exponent);
-      setDoublingFrom(null);
-      updateProgress((prev) => {
-        const withOrder = ensureFactOrder(prev, exponent);
-        const nextCurrent = revisit ? prev.currentExponent : exponent;
+  const updateProgress = useCallback(
+    (updater: (prev: GameProgress) => GameProgress) => {
+      setProgress((prev) => {
+        const next = updater(prev);
+        if (next === prev) return prev;
+        saveProgress(next);
+        return next;
+      });
+    },
+    [],
+  );
 
-        if (withOrder === prev && prev.currentExponent === nextCurrent) {
+  /** A level page was opened: every fact of that level is now on screen. */
+  const visitLevel = useCallback(
+    (rawExponent: number) => {
+      const exponent = clampExponent(rawExponent);
+      updateProgress((prev) => {
+        const visitedLevels = withLevel(prev.visitedLevels, exponent);
+        const highestExponentUnlocked = Math.max(
+          prev.highestExponentUnlocked,
+          exponent,
+        );
+        if (
+          visitedLevels === prev.visitedLevels &&
+          highestExponentUnlocked === prev.highestExponentUnlocked &&
+          prev.currentExponent === exponent
+        ) {
           return prev;
         }
-
         return {
-          ...withOrder,
-          currentExponent: nextCurrent,
+          ...prev,
+          visitedLevels,
+          highestExponentUnlocked,
+          currentExponent: exponent,
         };
       });
-      setScreen('level');
     },
     [updateProgress],
   );
 
-  const continueGame = useCallback(() => {
-    openLevel(progress.currentExponent, false);
-  }, [openLevel, progress.currentExponent]);
+  const completeLevel = useCallback(
+    (rawExponent: number) => {
+      const exponent = clampExponent(rawExponent);
+      const next = Math.min(exponent + 1, MAX_EXPONENT);
+      updateProgress((prev) => {
+        const isNew = !prev.completedLevels.includes(exponent);
+        const streak = isNew ? prev.currentStreak + 1 : prev.currentStreak;
+        return {
+          ...prev,
+          completedLevels: withLevel(prev.completedLevels, exponent),
+          visitedLevels: withLevel(prev.visitedLevels, exponent),
+          highestExponentUnlocked: Math.max(prev.highestExponentUnlocked, next),
+          currentExponent: next,
+          currentStreak: streak,
+          bestStreak: Math.max(prev.bestStreak, streak),
+        };
+      });
+    },
+    [updateProgress],
+  );
 
   const startFresh = useCallback(() => {
     clearProgress();
     const fresh = createInitialProgress();
-    const withOrder = ensureFactOrder(fresh, 0);
-    saveProgress(withOrder);
-    setProgress(withOrder);
+    saveProgress(fresh);
+    setProgress(fresh);
     setStorageNotice(null);
-    setIsRevisit(false);
-    setViewingExponent(0);
-    setDoublingFrom(null);
-    setScreen('level');
-  }, []);
-
-  const markFactViewed = useCallback(
-    (exponent: number, position: number) => {
-      updateProgress((prev) => {
-        const key = String(exponent);
-        const previousViewed = prev.factsViewed[key] ?? [];
-        const alreadyViewed = previousViewed.includes(position);
-        const samePosition = prev.factPositions[key] === position;
-        if (alreadyViewed && samePosition) return prev;
-
-        const viewed = alreadyViewed
-          ? previousViewed
-          : [...previousViewed, position].sort((a, b) => a - b);
-
-        return {
-          ...prev,
-          factsViewed: {
-            ...prev.factsViewed,
-            [key]: viewed,
-          },
-          factPositions: {
-            ...prev.factPositions,
-            [key]: position,
-          },
-        };
-      });
-    },
-    [updateProgress],
-  );
-
-  const setFactPosition = useCallback(
-    (exponent: number, position: number) => {
-      updateProgress((prev) => {
-        const key = String(exponent);
-        if (prev.factPositions[key] === position) return prev;
-        return {
-          ...prev,
-          factPositions: {
-            ...prev.factPositions,
-            [key]: position,
-          },
-        };
-      });
-    },
-    [updateProgress],
-  );
-
-  const viewedCount = progress.factsViewed[String(viewingExponent)]?.length ?? 0;
-  const levelAlreadyCompleted = progress.completedLevels.includes(viewingExponent);
-  const canAdvance =
-    levelAlreadyCompleted || viewedCount >= MIN_FACTS_TO_ADVANCE;
-  const isDoubling = doublingFrom !== null;
-
-  const completeLevel = useCallback(() => {
-    if (isDoubling) return;
-    if (!canAdvance && !isRevisit) return;
-
-    const completedExp = viewingExponent;
-    const nextExp = completedExp + 1;
-    const alreadyDone = progress.completedLevels.includes(completedExp);
-
-    if (alreadyDone && isRevisit) {
-      setScreen('progress');
-      return;
-    }
-
-    updateProgress((prev) => {
-      const completed = new Set(prev.completedLevels);
-      const wasNew = !completed.has(completedExp);
-      completed.add(completedExp);
-      const streak = wasNew ? prev.currentStreak + 1 : prev.currentStreak;
-
-      return {
-        ...prev,
-        completedLevels: [...completed].sort((a, b) => a - b),
-        highestExponentUnlocked: Math.max(prev.highestExponentUnlocked, nextExp),
-        currentExponent: isRevisit ? prev.currentExponent : nextExp,
-        correctAnswers: wasNew ? prev.correctAnswers + 1 : prev.correctAnswers,
-        currentStreak: streak,
-        bestStreak: Math.max(prev.bestStreak, streak),
-        challengeState: null,
-      };
-    });
-
-    setDoublingFrom(completedExp);
-  }, [
-    canAdvance,
-    isDoubling,
-    isRevisit,
-    progress.completedLevels,
-    updateProgress,
-    viewingExponent,
-  ]);
-
-  const finishDoubling = useCallback(() => {
-    if (doublingFrom === null) return;
-    const nextExp = doublingFrom + 1;
-    setDoublingFrom(null);
-    if (isRevisit) {
-      setScreen('progress');
-      return;
-    }
-    openLevel(nextExp, false);
-  }, [doublingFrom, isRevisit, openLevel]);
-
-  const goHome = useCallback(() => {
-    setDoublingFrom(null);
-    setScreen('home');
-  }, []);
-
-  const goProgress = useCallback(() => {
-    setDoublingFrom(null);
-    setScreen('progress');
   }, []);
 
   const updatePreferences = useCallback(
@@ -237,32 +109,29 @@ export const useGame = () => {
     [updateProgress],
   );
 
+  const dismissStorageNotice = useCallback(() => setStorageNotice(null), []);
+
+  const isUnlocked = useCallback(
+    (exponent: number) => exponent <= progress.highestExponentUnlocked,
+    [progress.highestExponentUnlocked],
+  );
+
   const hasProgress =
-    progress.highestExponentUnlocked > 0 ||
-    progress.completedLevels.length > 0 ||
-    progress.correctAnswers > 0 ||
-    (progress.factsViewed['0']?.length ?? 0) > 0;
+    progress.completedLevels.length > 0 || progress.visitedLevels.length > 0;
 
   return {
     progress,
-    screen,
-    viewingExponent,
     storageNotice,
-    canAdvance,
-    isRevisit,
-    isDoubling,
-    doublingFrom,
+    hydrated,
     hasProgress,
-    openLevel,
-    continueGame,
-    startFresh,
-    markFactViewed,
-    setFactPosition,
+    factsDiscovered: progress.visitedLevels.length * FACTS_PER_LEVEL,
+    isUnlocked,
+    visitLevel,
     completeLevel,
-    finishDoubling,
-    goHome,
-    goProgress,
+    startFresh,
     updatePreferences,
-    dismissStorageNotice: () => setStorageNotice(null),
+    dismissStorageNotice,
   };
 };
+
+export type GameApi = ReturnType<typeof useGame>;

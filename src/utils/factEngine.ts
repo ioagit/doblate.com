@@ -440,10 +440,3 @@ export const getFactsForLevel = (exponent: number): Fact[] => {
   return ensureTenFacts(exponent, picked);
 };
 
-export const getOrderedFacts = (
-  exponent: number,
-  order: number[],
-): Fact[] => {
-  const facts = getFactsForLevel(exponent);
-  return order.map((index) => facts[index]!).filter(Boolean);
-};
