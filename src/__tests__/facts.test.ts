@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildFactOrder, factOrderSeed, shuffleWithSeed } from '../utils/factShuffle';
-import { getFactsForLevel } from '../utils/factEngine';
+import { curatedFactCount, getFactsForLevel } from '../utils/factEngine';
+import { FACTS_PER_LEVEL, MIN_FACTS_TO_ADVANCE } from '../types/game';
 
 describe('fact shuffling and engine', () => {
   it('produces a stable shuffle for the same level', () => {
@@ -21,6 +22,21 @@ describe('fact shuffling and engine', () => {
     expect(getFactsForLevel(10)).toHaveLength(10);
     expect(getFactsForLevel(42)).toHaveLength(10);
     expect(getFactsForLevel(100)).toHaveLength(10);
+  });
+
+  it('shows curated facts first on partially curated levels', () => {
+    const exponent = 17;
+    const curated = curatedFactCount(exponent);
+    expect(curated).toBeGreaterThanOrEqual(MIN_FACTS_TO_ADVANCE);
+    expect(curated).toBeLessThan(FACTS_PER_LEVEL);
+
+    const order = buildFactOrder(exponent, FACTS_PER_LEVEL, curated);
+    expect(new Set(order).size).toBe(FACTS_PER_LEVEL);
+    expect(order.slice(0, curated).every((index) => index < curated)).toBe(true);
+
+    const facts = getFactsForLevel(exponent);
+    const firstRevealed = order.slice(0, curated).map((index) => facts[index]!.id);
+    expect(firstRevealed.some((id) => id.startsWith('g-'))).toBe(false);
   });
 
   it('keeps deterministic shuffleWithSeed', () => {

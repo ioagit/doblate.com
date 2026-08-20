@@ -385,6 +385,10 @@ const ensureTenFacts = (exponent: number, facts: Fact[]): Fact[] => {
   return merged.slice(0, FACTS_PER_LEVEL);
 };
 
+/** How many hand-written facts a level has (0 when fully generated). */
+export const curatedFactCount = (exponent: number): number =>
+  CURATED_FACTS[exponent]?.length ?? 0;
+
 /**
  * Returns exactly 10 facts for a level.
  * Uses curated facts when available; fills/replaces with generated facts as needed.

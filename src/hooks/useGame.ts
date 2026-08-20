@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { GameProgress, Screen } from '../types/game';
-import { MIN_FACTS_TO_ADVANCE } from '../types/game';
+import { FACTS_PER_LEVEL, MIN_FACTS_TO_ADVANCE } from '../types/game';
+import { curatedFactCount } from '../utils/factEngine';
 import { buildFactOrder } from '../utils/factShuffle';
 import {
   clearProgress,
@@ -16,12 +17,16 @@ const ensureFactOrder = (
   exponent: number,
 ): GameProgress => {
   const key = String(exponent);
-  if (progress.factOrders[key]?.length === 10) return progress;
+  if (progress.factOrders[key]?.length === FACTS_PER_LEVEL) return progress;
   return {
     ...progress,
     factOrders: {
       ...progress.factOrders,
-      [key]: buildFactOrder(exponent),
+      [key]: buildFactOrder(
+        exponent,
+        FACTS_PER_LEVEL,
+        curatedFactCount(exponent),
+      ),
     },
     factPositions: {
       ...progress.factPositions,

@@ -886,6 +886,72 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
       category: 'historia',
     },
   ],
+  17: [
+    {
+      id: '17-1',
+      text: 'El Macintosh 128K de 1984 tenía 131 072 bytes de memoria RAM, y el ZX Spectrum 128 llevaba esa misma cifra en el nombre.',
+      category: 'historia',
+    },
+    {
+      id: '17-2',
+      text: 'Un segundo de audio con calidad de CD ocupa 176 400 bytes, así que en 131 072 bytes no cabe ni un segundo completo de música.',
+      category: 'datos',
+    },
+    {
+      id: '17-3',
+      text: 'En 131 072 bytes caben 65 536 caracteres codificados en UTF-16, a dos bytes por carácter.',
+      category: 'tecnología',
+    },
+    {
+      id: '17-4',
+      text: '17 es un número primo, así que 131 072 no puede escribirse como un cuadrado ni como un cubo exacto.',
+      category: 'matemáticas',
+    },
+  ],
+  18: [
+    {
+      id: '18-1',
+      text: 'Un cartucho de 2 megabits, tamaño habitual en los primeros juegos de 16 bits, guardaba 262 144 bytes.',
+      category: 'historia',
+    },
+    {
+      id: '18-2',
+      text: 'Muchas pantallas LCD económicas usan 6 bits por canal de color: 18 bits en total, que dan 262 144 tonos distintos.',
+      category: 'tecnología',
+    },
+    {
+      id: '18-3',
+      text: 'Un cubo de 64 celdas de lado contiene 262 144 celdas: 64 × 64 × 64.',
+      category: 'comparación',
+    },
+    {
+      id: '18-4',
+      text: 'En 262 144 bytes cabe el texto plano de unas 130 páginas de libro.',
+      category: 'usos',
+    },
+  ],
+  19: [
+    {
+      id: '19-1',
+      text: 'El Commodore Amiga 500, lanzado en 1987, traía 524 288 bytes de memoria: 512 KiB.',
+      category: 'historia',
+    },
+    {
+      id: '19-2',
+      text: 'Una novela larga tiene unas 500 000 letras, así que su texto plano cabe justo en 524 288 bytes.',
+      category: 'comparación',
+    },
+    {
+      id: '19-3',
+      text: 'Un disquete de 3½ pulgadas guardaba 1 474 560 bytes: casi el triple de este número.',
+      category: 'tecnología',
+    },
+    {
+      id: '19-4',
+      text: '524 288 es exactamente medio mebibyte: la mitad de 1 048 576.',
+      category: 'matemáticas',
+    },
+  ],
   20: [
     {
       id: '20-1',
@@ -936,6 +1002,204 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
       id: '20-10',
       text: 'Un megapíxel son aproximadamente un millón de píxeles; 2²⁰ está muy cerca de esa idea.',
       category: 'ciencia',
+    },
+  ],
+  21: [
+    {
+      id: '21-1',
+      text: 'Un cartucho de 16 megabits, como los de muchos juegos de Super Nintendo, guardaba 2 097 152 bytes.',
+      category: 'historia',
+    },
+    {
+      id: '21-2',
+      text: 'Un minuto de música con calidad de CD ocupa unos 10 millones de bytes: cinco veces este número.',
+      category: 'comparación',
+    },
+    {
+      id: '21-3',
+      text: 'Un mosquito bate las alas unas 600 veces por segundo: llegaría a 2 097 152 aleteos en menos de una hora.',
+      category: 'naturaleza',
+    },
+    {
+      id: '21-4',
+      text: 'Unicode reserva 1 114 112 posiciones para caracteres: algo más de la mitad de este número.',
+      category: 'datos',
+    },
+  ],
+  22: [
+    {
+      id: '22-1',
+      text: 'El genoma de la bacteria Escherichia coli tiene unos 4 600 000 pares de bases: algo más que este número.',
+      category: 'ciencia',
+    },
+    {
+      id: '22-2',
+      text: 'Cuatro mebibytes, 4 194 304 bytes, era la memoria RAM habitual de una PC de gama media en 1993.',
+      category: 'historia',
+    },
+    {
+      id: '22-3',
+      text: 'Un libro de 500 páginas en texto plano ocupa cerca de un millón de bytes: en 4 194 304 bytes caben unos cuatro libros así.',
+      category: 'comparación',
+    },
+    {
+      id: '22-4',
+      text: 'Los discos se organizan en bloques de 4 KiB: 4 194 304 bytes son exactamente 1 024 bloques.',
+      category: 'tecnología',
+    },
+  ],
+  23: [
+    {
+      id: '23-1',
+      text: 'Los decimales de 32 bits guardan la mantisa en 23 bits, lo que permite 8 388 608 valores distintos.',
+      category: 'tecnología',
+    },
+    {
+      id: '23-2',
+      text: 'Un cartucho de 64 megabits, tamaño frecuente en la Nintendo 64, guardaba 8 388 608 bytes.',
+      category: 'historia',
+    },
+    {
+      id: '23-3',
+      text: 'El corazón de un colibrí puede latir 1 200 veces por minuto: alcanzaría 8 388 608 latidos en menos de una semana.',
+      category: 'naturaleza',
+    },
+    {
+      id: '23-4',
+      text: 'En 8 388 608 bytes caben más de dos horas de voz comprimida a 8 kilobits por segundo.',
+      category: 'datos',
+    },
+  ],
+  24: [
+    {
+      id: '24-1',
+      text: 'El color verdadero de 24 bits ofrece 16 777 216 tonos: 256 niveles de rojo, verde y azul combinados.',
+      category: 'tecnología',
+    },
+    {
+      id: '24-2',
+      text: '16 777 216 es a la vez cuadrado y cubo perfecto, (2¹²)² y (2⁸)³, porque 24 es múltiplo de 2 y de 3.',
+      category: 'matemáticas',
+    },
+    {
+      id: '24-3',
+      text: 'Un cubo de 256 celdas de lado contiene 16 777 216 celdas.',
+      category: 'comparación',
+    },
+    {
+      id: '24-4',
+      text: 'Los colores de la web escritos como #RRGGBB pueden expresar exactamente 16 777 216 combinaciones.',
+      category: 'usos',
+    },
+  ],
+  25: [
+    {
+      id: '25-1',
+      text: 'En la leyenda del tablero de ajedrez, la casilla 26 recibe 33 554 432 granos de trigo: el resultado de doblar 25 veces.',
+      category: 'historia',
+    },
+    {
+      id: '25-2',
+      text: 'El cerebro humano tiene unos 86 000 millones de neuronas: más de dos mil quinientas veces este número.',
+      category: 'ciencia',
+    },
+    {
+      id: '25-3',
+      text: 'Una torre con 33 554 432 hojas de papel superaría los tres kilómetros de altura.',
+      category: 'comparación',
+    },
+    {
+      id: '25-4',
+      text: 'Las primeras tarjetas de memoria para cámaras digitales rondaban los 32 MiB: 33 554 432 bytes.',
+      category: 'datos',
+    },
+  ],
+  26: [
+    {
+      id: '26-1',
+      text: 'Doblar una hoja de papel 26 veces daría 67 108 864 capas, aunque los récords reales no pasan de trece dobleces.',
+      category: 'comparación',
+    },
+    {
+      id: '26-2',
+      text: 'El primer iPod, de 2001, guardaba 5 gigabytes: unas setenta y cinco veces este número de bytes.',
+      category: 'historia',
+    },
+    {
+      id: '26-3',
+      text: 'La retina humana tiene unos 120 millones de bastones: cerca del doble de este número.',
+      category: 'ciencia',
+    },
+    {
+      id: '26-4',
+      text: 'En 67 108 864 bytes caben unas diecisiete canciones en MP3 a 128 kilobits por segundo.',
+      category: 'datos',
+    },
+  ],
+  27: [
+    {
+      id: '27-1',
+      text: 'Las primeras memorias USB masivas, a comienzos de los 2000, guardaban 128 MiB: 134 217 728 bytes.',
+      category: 'historia',
+    },
+    {
+      id: '27-2',
+      text: 'Una hormiga pesa unos tres miligramos, así que 134 217 728 hormigas pesarían cerca de 400 kilos.',
+      category: 'naturaleza',
+    },
+    {
+      id: '27-3',
+      text: 'Si cada unidad fuera una persona, 134 217 728 superaría por poco a toda la población de México.',
+      category: 'comparación',
+    },
+    {
+      id: '27-4',
+      text: 'Un libro digital sin ilustraciones ocupa menos de un mebibyte: en 134 217 728 bytes cabrían más de cien.',
+      category: 'usos',
+    },
+  ],
+  28: [
+    {
+      id: '28-1',
+      text: 'La suma de todas las potencias de dos anteriores (1 + 2 + 4 + … + 2²⁷) es 268 435 455: exactamente uno menos que este número.',
+      category: 'matemáticas',
+    },
+    {
+      id: '28-2',
+      text: 'Existen 4 294 967 296 direcciones IPv4 posibles: dieciséis veces este número.',
+      category: 'tecnología',
+    },
+    {
+      id: '28-3',
+      text: 'Doscientos cincuenta y seis mebibytes, 268 435 456 bytes, era la memoria RAM típica de una PC de 2001.',
+      category: 'historia',
+    },
+    {
+      id: '28-4',
+      text: 'El genoma humano tiene unos 3 200 millones de pares de bases: casi doce veces este número.',
+      category: 'ciencia',
+    },
+  ],
+  29: [
+    {
+      id: '29-1',
+      text: 'La PlayStation 3 tenía 536 870 912 bytes de memoria en total: 512 MiB repartidos en dos bloques de 256.',
+      category: 'historia',
+    },
+    {
+      id: '29-2',
+      text: 'Un CD de datos guarda unos 700 MiB, algo más que estos 512 MiB.',
+      category: 'comparación',
+    },
+    {
+      id: '29-3',
+      text: 'A los ochenta años, un corazón humano ha latido unos 3 000 millones de veces: casi seis veces este número.',
+      category: 'ciencia',
+    },
+    {
+      id: '29-4',
+      text: 'Medio gibibyte exacto: 536 870 912 bytes son la mitad de 1 073 741 824.',
+      category: 'datos',
     },
   ],
   30: [
