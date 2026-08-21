@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import type { StorageNotice } from '../hooks/useGame';
 import { useRouter } from '../hooks/useRouter';
-import { LEVELS_PATH, PROGRESS_PATH, levelPath } from '../routes';
-import { MAX_EXPONENT } from '../types/game';
-import { exactValue } from '../utils/levelCopy';
-import { formatPowerOfTwo } from '../utils/numberFormat';
+import { PROGRESS_PATH, levelPath } from '../routes';
 import {
   ArrowRightIcon,
   BoltIcon,
@@ -80,46 +77,35 @@ export const HomeScreen = ({
       </div>
 
       <p className="home-lead">
-        Empieza en 1. Cada nivel tiene su propia página con diez datos sobre el número.
-        Cuando lo hayas mirado, dóblalo y pasa al siguiente.
+        Empieza en 1. Cada nivel te enseña un número con datos curiosos. Cuando explores
+        unos cuantos, el número se dobla.
         <strong className="lead-highlight">
-          {MAX_EXPONENT + 1} niveles, del 1 a {exactValue(MAX_EXPONENT)}.
+          El crecimiento exponencial, jugado a tu ritmo.
         </strong>
       </p>
 
       <div className="home-actions">
-        <Link
-          to={levelPath(hasProgress ? currentExponent : 0)}
-          className="btn btn-primary"
-          onActivate={() => play('unlock')}
-        >
-          {hasProgress
-            ? `Continuar en ${formatPowerOfTwo(currentExponent)}`
-            : 'Empezar en 2⁰ = 1'}
-          <span className="btn-badge">
-            <ArrowRightIcon />
-          </span>
-        </Link>
-
-        <Link
-          to={LEVELS_PATH}
-          className="btn btn-secondary"
-          onActivate={() => play('pop')}
-        >
-          <span className="btn-icon-lead" aria-hidden="true">
-            <ChartIcon />
-          </span>
-          Ver las {MAX_EXPONENT + 1} potencias
-        </Link>
-
-        {hasProgress && (
+        {hasProgress ? (
           <>
             <Link
-              to={PROGRESS_PATH}
-              className="btn btn-ghost"
-              onActivate={() => play('tap')}
+              to={levelPath(currentExponent)}
+              className="btn btn-primary"
+              onActivate={() => play('unlock')}
             >
-              Tu progreso
+              Continuar partida
+              <span className="btn-badge">
+                <ArrowRightIcon />
+              </span>
+            </Link>
+            <Link
+              to={PROGRESS_PATH}
+              className="btn btn-secondary"
+              onActivate={() => play('pop')}
+            >
+              <span className="btn-icon-lead" aria-hidden="true">
+                <ChartIcon />
+              </span>
+              Ver progreso
             </Link>
             <button
               type="button"
@@ -133,6 +119,17 @@ export const HomeScreen = ({
               Empezar de nuevo
             </button>
           </>
+        ) : (
+          <Link
+            to={levelPath(0)}
+            className="btn btn-primary"
+            onActivate={() => play('unlock')}
+          >
+            Empezar
+            <span className="btn-badge">
+              <ArrowRightIcon />
+            </span>
+          </Link>
         )}
       </div>
 

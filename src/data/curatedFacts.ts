@@ -15,18 +15,18 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '0-3',
-      text: 'El 1 es el primer número natural positivo y el punto de partida de Dóblate.',
-      category: 'usos',
+      text: 'Los romanos escribían el 1 como I: un palo. Es el símbolo numérico más simple que existe.',
+      category: 'historia',
     },
     {
       id: '0-4',
-      text: 'En binario, el número 1 se escribe simplemente «1»: un solo bit encendido.',
-      category: 'tecnología',
+      text: 'El 1 es el único número positivo igual a su recíproco: 1 ÷ 1 = 1.',
+      category: 'matemáticas',
     },
     {
       id: '0-5',
-      text: 'Una unidad es lo mínimo que puedes contar: una persona, un día, una idea.',
-      category: 'comparación',
+      text: 'En ajedrez, cada bando tiene un solo rey: si cae, se acaba la partida.',
+      category: 'usos',
     },
     {
       id: '0-6',
@@ -35,13 +35,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '0-7',
-      text: 'En la escala de Richter, un aumento de 1 grado multiplica la amplitud sísmica por unos 10, no por 2.',
+      text: 'El hidrógeno, el elemento más abundante del universo, tiene número atómico 1: un solo protón.',
       category: 'ciencia',
     },
     {
       id: '0-8',
-      text: 'Contar hasta 1 a razón de un número por segundo tarda… un segundo.',
-      category: 'tiempo',
+      text: 'En datos reales —poblaciones, facturas, ríos— cerca del 30 % de los números empiezan por 1. Es la ley de Benford.',
+      category: 'probabilidad',
     },
     {
       id: '0-9',
@@ -50,8 +50,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '0-10',
-      text: 'El número 1 ocupa un solo dígito. A partir de aquí, cada nivel lo duplicará.',
-      category: 'datos',
+      text: 'Si partes un pastel en 1 trozo, no lo has partido: el 1 es la ausencia de división.',
+      category: 'comparación',
     },
   ],
   1: [
@@ -67,13 +67,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '1-3',
-      text: 'Los humanos somos animales bipedos: caminamos sobre 2 piernas.',
+      text: 'Los humanos somos animales bípedos: caminamos sobre 2 piernas.',
       category: 'naturaleza',
     },
     {
       id: '1-4',
-      text: 'Duplicar es multiplicar por 2. En Dóblate, cada nivel completado hace exactamente eso.',
-      category: 'usos',
+      text: '2 + 2 = 2 × 2 = 4. El 2 es el único número cuyo doble y cuyo cuadrado coinciden.',
+      category: 'matemáticas',
     },
     {
       id: '1-5',
@@ -82,8 +82,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '1-6',
-      text: '2¹ = 2. Es la primera potencia de dos mayor que 1.',
-      category: 'matemáticas',
+      text: 'El helio tiene exactamente 2 protones: es el segundo elemento de la tabla periódica y el que hace flotar los globos.',
+      category: 'ciencia',
     },
     {
       id: '1-7',
@@ -97,8 +97,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '1-9',
-      text: 'El día se divide a menudo en 2 mitades: a. m. y p. m.',
-      category: 'tiempo',
+      text: 'Nadie ha encontrado un monopolio magnético: cada imán tiene siempre 2 polos, norte y sur.',
+      category: 'ciencia',
     },
     {
       id: '1-10',
@@ -129,13 +129,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '2-5',
-      text: 'Un nibble (medio byte) son 4 bits y puede representar 16 valores distintos.',
-      category: 'tecnología',
+      text: 'Hay 4 tipos sanguíneos en el sistema ABO: A, B, AB y O.',
+      category: 'ciencia',
     },
     {
       id: '2-6',
-      text: 'En binario, 4 se escribe «100».',
-      category: 'tecnología',
+      text: 'Un tetraedro —el dado de 4 caras del rol— es el poliedro más simple: 4 caras y 4 vértices.',
+      category: 'matemáticas',
     },
     {
       id: '2-7',
@@ -149,13 +149,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '2-9',
-      text: 'Un cuadrado tiene 4 lados iguales y 4 ángulos rectos.',
-      category: 'matemáticas',
+      text: 'Un año bisiesto añade 1 día cada 4 años, con matices: los siglos solo son bisiestos si son divisibles por 400.',
+      category: 'tiempo',
     },
     {
       id: '2-10',
-      text: 'En muchos calendarios, un mes se divide en semanas de ~4 semanas.',
-      category: 'tiempo',
+      text: 'Sin oxígeno, el cerebro humano aguanta unos 4 minutos antes de dañarse de verdad.',
+      category: 'ciencia',
     },
   ],
   3: [
@@ -181,8 +181,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '3-5',
-      text: 'En binario, 8 se escribe «1000».',
-      category: 'tecnología',
+      text: 'La luz del Sol tarda unos 8 minutos y 20 segundos en llegar a la Tierra.',
+      category: 'ciencia',
     },
     {
       id: '3-6',
@@ -206,8 +206,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '3-10',
-      text: '8 segundos bastan para contar hasta 8 a un número por segundo.',
-      category: 'tiempo',
+      text: 'Un cubo de Rubik 3×3 tiene exactamente 8 cubitos de esquina, y nunca dejan de ser esquinas.',
+      category: 'usos',
     },
   ],
   4: [
@@ -223,8 +223,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '4-3',
-      text: 'En binario, 16 se escribe «10000».',
-      category: 'tecnología',
+      text: 'En Minecraft, un chunk de superficie mide 16×16 bloques.',
+      category: 'usos',
     },
     {
       id: '4-4',
@@ -233,18 +233,18 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '4-5',
-      text: 'En el tenis, el primer punto de un juego se anuncia como «15» (cercano a 16 en la secuencia de potencias).',
+      text: 'Hay 16 piezas por bando en el ajedrez: rey, dama, 2 torres, 2 caballos, 2 alfiles y 8 peones.',
       category: 'usos',
     },
     {
       id: '4-6',
-      text: 'Con 4 bits puedes codificar 16 símbolos distintos.',
-      category: 'datos',
+      text: 'El dado de 16 caras (d16) existe en rol, aunque el d20 se lleva toda la fama.',
+      category: 'usos',
     },
     {
       id: '4-7',
-      text: 'Una adolescente o un adolescente de 16 años suele estar en edad de obtener el permiso de conducir en muchos países.',
-      category: 'comparación',
+      text: '16 cuadros por segundo era el cine mudo: por debajo, el movimiento se ve a tirones.',
+      category: 'historia',
     },
     {
       id: '4-8',
@@ -258,8 +258,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '4-10',
-      text: 'Contar hasta 16 a un número por segundo tarda 16 segundos.',
-      category: 'tiempo',
+      text: 'En hexadecimal, 16 se escribe «10»: igual que el 2 se escribe «10» en binario. Cada base empieza a pedir un segundo dígito en su propia «diez».',
+      category: 'matemáticas',
     },
   ],
   5: [
@@ -280,8 +280,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '5-4',
-      text: 'En binario, 32 se escribe «100000».',
-      category: 'tecnología',
+      text: 'La rosa de los vientos fina tiene 32 rumbos: N, NbE, NNE y así hasta dar la vuelta al horizonte.',
+      category: 'comparación',
     },
     {
       id: '5-5',
@@ -290,8 +290,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '5-6',
-      text: '2⁵ = 32. Cinco duplicaciones a partir de 1.',
-      category: 'matemáticas',
+      text: '32 bits son 4 bytes: el tamaño clásico de un «int» en muchísimos programas.',
+      category: 'tecnología',
     },
     {
       id: '5-7',
@@ -300,13 +300,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '5-8',
-      text: 'Un mes puede tener 28, 29, 30 o 31 días; ninguno llega a 32.',
+      text: 'Un mes puede tener 28, 29, 30 o 31 días. El 32 es el primer número que se sale del calendario.',
       category: 'tiempo',
     },
     {
       id: '5-9',
-      text: 'Con 5 bits se representan 32 valores (0–31).',
-      category: 'datos',
+      text: 'Existe el dado de 32 caras (d32) en juegos de rol, aunque casi nadie lo usa.',
+      category: 'usos',
     },
     {
       id: '5-10',
@@ -322,8 +322,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '6-2',
-      text: 'El código ASCII básico original define 128 caracteres; la mitad inferior ocupa valores de 0 a 63 (casi 64).',
-      category: 'tecnología',
+      text: 'El código genético tiene 64 codones: las 4 bases del ADN combinadas de tres en tres (4³ = 64) para fabricar proteínas.',
+      category: 'ciencia',
     },
     {
       id: '6-3',
@@ -332,8 +332,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '6-4',
-      text: 'En binario, 64 se escribe «1000000».',
-      category: 'tecnología',
+      text: 'El I Ching, el libro chino de las mutaciones, se organiza en 64 hexagramas.',
+      category: 'historia',
     },
     {
       id: '6-5',
@@ -347,13 +347,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '6-7',
-      text: 'Un minuto tiene 60 segundos; 64 segundos son un poco más de un minuto.',
-      category: 'tiempo',
+      text: 'Un cubo de 4×4×4 está formado por 64 cubitos más pequeños.',
+      category: 'matemáticas',
     },
     {
       id: '6-8',
-      text: 'Con 6 bits se representan exactamente 64 valores.',
-      category: 'datos',
+      text: '64 kilobits por segundo era el bitrate de una llamada telefónica digital (ISDN): voz reconocible, música fatal.',
+      category: 'historia',
     },
     {
       id: '6-9',
@@ -362,8 +362,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '6-10',
-      text: 'En muchos videojuegos clásicos de 8 bits, 64 kilobytes (en sentido informal) era una cantidad memorable de memoria.',
-      category: 'comparación',
+      text: 'En 1977 el Apple II se vendía con 4 KB y se ampliaba hasta 48 o 64 KB: 64 kilobytes eran toda la memoria de un ordenador de salón.',
+      category: 'historia',
     },
   ],
   7: [
@@ -374,13 +374,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '7-2',
-      text: 'En binario, 128 se escribe «10000000»: un 1 seguido de siete ceros.',
+      text: 'MIDI numera las notas del 0 al 127: 128 sonidos, del do más grave al más agudo que un teclado electrónico reconoce.',
       category: 'tecnología',
     },
     {
       id: '7-3',
-      text: 'Una dirección IPv4 tiene 32 bits; 2⁷ = 128 aparece a menudo en máscaras y rangos de red.',
-      category: 'tecnología',
+      text: 'El 128 es el primer código que ya no cabe en ASCII de 7 bits: por eso las eñes y los acentos rompían los textos antiguos.',
+      category: 'historia',
     },
     {
       id: '7-4',
@@ -389,7 +389,7 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '7-5',
-      text: '2⁷ = 128. Siete duplicaciones desde 1.',
+      text: 'La Torre de Hanói con 7 discos se resuelve en 127 movimientos: uno menos que 128.',
       category: 'matemáticas',
     },
     {
@@ -399,8 +399,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '7-7',
-      text: 'Con 7 bits se representan 128 valores distintos.',
-      category: 'datos',
+      text: '128 metros es la altura de un edificio de unas 40 plantas: una torre de barrio, no un rascacielos.',
+      category: 'comparación',
     },
     {
       id: '7-8',
@@ -409,8 +409,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '7-9',
-      text: '128 es el doble de 64: un paso más en la secuencia que cubre el tablero de ajedrez.',
-      category: 'comparación',
+      text: 'Un humano parpadea unas 15–20 veces por minuto: 128 parpadeos son 6 u 8 minutos de conversación.',
+      category: 'naturaleza',
     },
     {
       id: '7-10',
@@ -431,8 +431,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '8-3',
-      text: 'En binario, 256 se escribe «100000000».',
-      category: 'tecnología',
+      text: 'Un icono clásico de 16×16 píxeles tiene exactamente 256 puntos.',
+      category: 'comparación',
     },
     {
       id: '8-4',
@@ -451,13 +451,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '8-7',
-      text: 'Con 8 bits (un byte) se representan exactamente 256 valores.',
-      category: 'datos',
+      text: '256 colores era la paleta VGA estándar de los PC de los 90: toda una foto cabía en un byte por píxel.',
+      category: 'historia',
     },
     {
       id: '8-8',
-      text: 'En muchos teclados, la zona numérica y atajos hacen de 256 un número «redondo» en informática, no en la vida cotidiana.',
-      category: 'comparación',
+      text: 'Pac-Man, Space Invaders y casi todo el arcade clásico vivían en CPUs de 8 bits: 256 valores eran todo su vocabulario aritmético.',
+      category: 'historia',
     },
     {
       id: '8-9',
@@ -466,8 +466,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '8-10',
-      text: '256 es 2⁸: ocho bits, un byte completo de posibilidades.',
-      category: 'tecnología',
+      text: '256 es 2⁸ y también 4⁴: cuatro cuatros multiplicados.',
+      category: 'matemáticas',
     },
   ],
   9: [
@@ -478,13 +478,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '9-2',
-      text: 'En binario, 512 se escribe «1000000000».',
-      category: 'tecnología',
+      text: 'La Torre de Hanói con 9 discos pide 511 movimientos: uno menos que 512.',
+      category: 'matemáticas',
     },
     {
       id: '9-3',
-      text: '2⁹ = 512. Nueve duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: '512 Hz está cerca de un do agudo de piano. Cada octava duplica, así que 256 Hz es la octava de abajo.',
+      category: 'ciencia',
     },
     {
       id: '9-4',
@@ -493,8 +493,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '9-5',
-      text: 'Con 9 bits se representan 512 valores.',
-      category: 'datos',
+      text: 'Madrid y Barcelona están a unos 500 km en línea recta: 512 km es esa ruta con un pequeño rodeo.',
+      category: 'comparación',
     },
     {
       id: '9-6',
@@ -508,17 +508,17 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '9-8',
-      text: 'En redes, 512 aparece en límites históricos de datagramas y buffers.',
-      category: 'tecnología',
-    },
-    {
-      id: '9-9',
-      text: '512 personas serían un aforo mediano para una sala de conferencias.',
+      text: 'Un folio A4 apilado 512 veces mide unos 5 cm: un taco de papel de oficina.',
       category: 'comparación',
     },
     {
+      id: '9-9',
+      text: 'Una colmena pequeña arranca con unos cientos de abejas; 512 obreras ya son un enjambre que se ve y se oye.',
+      category: 'naturaleza',
+    },
+    {
       id: '9-10',
-      text: '512 es el doble de 256: otro salto limpio en la escalera de potencias de dos.',
+      text: 'Una página densa de libro tiene unas 500 palabras; 512 palabras se leen en un minuto largo.',
       category: 'usos',
     },
   ],
@@ -535,13 +535,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '10-3',
-      text: 'En binario, 1024 se escribe como 1 seguido de 10 ceros.',
-      category: 'tecnología',
+      text: 'En el juego 2048, el azulejo 1024 es el penúltimo paso: un solo merge te da el número que da nombre al juego.',
+      category: 'usos',
     },
     {
       id: '10-4',
-      text: '2¹⁰ = 1024. Diez duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: '1024 años después del año 1000 está 2024: un «kibi-milenio» nos deja en el siglo XXI.',
+      category: 'historia',
     },
     {
       id: '10-5',
@@ -570,8 +570,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '10-10',
-      text: '1024 tiene 4 dígitos: desde aquí los números empiezan a verse «de verdad» grandes en pantalla.',
-      category: 'usos',
+      text: 'Un kibibyte de texto son unas 200 palabras: este párrafo cabe varias veces en 1024 bytes.',
+      category: 'datos',
     },
   ],
   11: [
@@ -587,7 +587,7 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '11-3',
-      text: 'En binario, 2048 es 1 seguido de 11 ceros.',
+      text: '2048 bits es un tamaño habitual de clave RSA. Ojo: no son 2048 combinaciones, sino 2²⁰⁴⁸, un número con más de 600 dígitos.',
       category: 'tecnología',
     },
     {
@@ -597,8 +597,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '11-5',
-      text: 'Una cuadrícula de 45×45 tiene 2025 casillas; 2048 está muy cerca de ese tamaño.',
-      category: 'comparación',
+      text: 'El cine digital 2K mide 2048×1080 píxeles: este número es el ancho de una pantalla de cine.',
+      category: 'usos',
     },
     {
       id: '11-6',
@@ -607,23 +607,23 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '11-7',
-      text: '2¹¹ = 2048. Once duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: 'Un capítulo de novela ronda las 2 000–4 000 palabras; 2048 palabras son un capítulo cortito.',
+      category: 'comparación',
     },
     {
       id: '11-8',
-      text: 'En criptografía educativa, claves muy cortas de ~11 bits tendrían solo 2048 valores: insegurísimas.',
-      category: 'datos',
+      text: 'El ZX81 de Sinclair salía con 1 KB de RAM. 2 KB —2048 bytes— ya parecían un lujo en 1981.',
+      category: 'historia',
     },
     {
       id: '11-9',
-      text: '2048 no es primo: es potencia de dos mayor que 2.',
+      text: '2048 no es primo, pero 11 sí: por eso 2048 no es cuadrado ni cubo perfecto.',
       category: 'matemáticas',
     },
     {
       id: '11-10',
-      text: 'El año 2048 está a unas pocas décadas vista desde principios del siglo XXI.',
-      category: 'historia',
+      text: 'En el 2048 original empiezas con un 2 y fusionas baldosas iguales: el 2048 es exactamente once fusiones desde el 2.',
+      category: 'usos',
     },
   ],
   12: [
@@ -634,12 +634,12 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '12-2',
-      text: '4 KiB = 4096 bytes exactamente.',
-      category: 'datos',
+      text: 'Una sección de chunk de Minecraft mide 16×16×16 bloques: exactamente 4096.',
+      category: 'usos',
     },
     {
       id: '12-3',
-      text: 'En binario, 4096 es 1 seguido de 12 ceros.',
+      text: 'Las fotos RAW de 12 bits por canal distinguen 4096 niveles de brillo: 16 veces más que un JPEG de 8 bits.',
       category: 'tecnología',
     },
     {
@@ -664,18 +664,18 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '12-8',
-      text: 'En tipografía digital, a veces se usan tablas con miles de glifos; 4096 es un tamaño de buffer habitual.',
-      category: 'usos',
-    },
-    {
-      id: '12-9',
-      text: '12 bits pueden representar 4096 valores (0–4095).',
+      text: '4096 bits es un tamaño habitual de clave RSA, el doble de largo que 2048.',
       category: 'datos',
     },
     {
-      id: '12-10',
-      text: '4096 está justo por encima de 4000, un número redondo en escala decimal.',
+      id: '12-9',
+      text: '4096 escalones de 20 cm suman 819 metros: a un pelo de los 828 m del Burj Khalifa, el edificio más alto del mundo.',
       category: 'comparación',
+    },
+    {
+      id: '12-10',
+      text: 'Un cubo de 16 celdas de lado contiene 4096 celdas.',
+      category: 'matemáticas',
     },
   ],
   13: [
@@ -686,8 +686,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '13-2',
-      text: 'En binario, 8192 es 1 seguido de 13 ceros.',
-      category: 'tecnología',
+      text: '13 es primo, así que 8192 no es cuadrado ni cubo: no hay forma de reordenar 8192 en un cuadrado o un cubo perfectos.',
+      category: 'matemáticas',
     },
     {
       id: '13-3',
@@ -696,7 +696,7 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '13-4',
-      text: 'Una imagen de 90×90 tiene 8100 píxeles; 8192 está muy cerca.',
+      text: 'El 8K UHD mide 7680×4320 píxeles: el lado largo está a un 6 % de 8192.',
       category: 'comparación',
     },
     {
@@ -706,17 +706,17 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '13-6',
-      text: '2¹³ = 8192. Trece duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: 'Un cuento de 8192 caracteres son unas 1 400 palabras: un relato breve de verdad.',
+      category: 'usos',
     },
     {
       id: '13-7',
-      text: '13 bits representan 8192 valores distintos.',
-      category: 'datos',
+      text: '8192 metros son 8,2 km: una subida de montaña de las serias, o la distancia de una carrera popular.',
+      category: 'comparación',
     },
     {
       id: '13-8',
-      text: '8192 no es cuadrado perfecto (90² = 8100, 91² = 8281).',
+      text: 'La Torre de Hanói con 13 discos pide 8191 movimientos: uno menos que este número.',
       category: 'matemáticas',
     },
     {
@@ -726,8 +726,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '13-10',
-      text: '8192 es el doble de 4096: otra página de memoria «de libro de texto».',
-      category: 'comparación',
+      text: '8192 Hz fue una frecuencia de muestreo temprana en telefonía digital: voz comprensible, música imposible.',
+      category: 'historia',
     },
   ],
   14: [
@@ -738,8 +738,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '14-2',
-      text: 'En binario, 16 384 es 1 seguido de 14 ceros.',
-      category: 'tecnología',
+      text: 'El pitch bend de MIDI usa 14 bits: 16 384 matices para deslizar una nota, no 127.',
+      category: 'usos',
     },
     {
       id: '14-3',
@@ -763,23 +763,23 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '14-7',
-      text: '14 bits representan 16 384 valores.',
-      category: 'datos',
+      text: '16 384 Hz está por encima de lo que muchos adultos oyen: el oído joven llega a 20 kHz, el oído maduro se corta antes.',
+      category: 'ciencia',
     },
     {
       id: '14-8',
-      text: '16 384 supera la población de muchos pueblos pequeños.',
+      text: 'Un tablero de 128×128 es un ajedrez de 16 384 casillas: 256 veces más grande que el de 8×8.',
       category: 'comparación',
     },
     {
       id: '14-9',
-      text: 'En notación española: 16.384.',
-      category: 'usos',
+      text: 'Un folio impreso tiene unos 3 000 caracteres; 16 384 caracteres son unas cinco páginas de libro.',
+      category: 'datos',
     },
     {
       id: '14-10',
-      text: 'Es el doble de 8192 y la mitad de 32 768.',
-      category: 'matemáticas',
+      text: '16 384 metros son 16,4 km: una media maratón es 21,1 km, así que este número en metros se queda a 5 km de la meta.',
+      category: 'comparación',
     },
   ],
   15: [
@@ -805,33 +805,33 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '15-5',
-      text: '2¹⁵ = 32 768. Quince duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: 'Los relojes de cuarzo vibran a 32 768 Hz: el cristal se divide por 2 quince veces y queda 1 tic por segundo.',
+      category: 'tecnología',
     },
     {
       id: '15-6',
-      text: 'Una imagen de ~181×181 tiene cerca de 32 761 píxeles: casi 32 768.',
-      category: 'comparación',
+      text: '−32 768 es el entero más pequeño de 16 bits con signo: un número negativo que es exactamente −2¹⁵.',
+      category: 'matemáticas',
     },
     {
       id: '15-7',
-      text: '15 bits representan 32 768 valores (0–32 767).',
-      category: 'datos',
+      text: '32 768 granos de arroz llenan un cuenco: unos 800 gramos, el arroz de una comida familiar.',
+      category: 'comparación',
     },
     {
       id: '15-8',
-      text: 'En audio de 16 bits, la amplitud usa valores centrados en este orden de magnitud.',
+      text: 'En audio de 16 bits el 0 está en el centro: 32 768 peldaños hacia el silencio y 32 767 hacia el volumen máximo.',
       category: 'usos',
     },
     {
       id: '15-9',
-      text: '32.768 en notación española con separador de miles.',
-      category: 'usos',
+      text: '32 768 metros son 32,8 km. Una maratón son 42,2 km: este número en metros se queda a unos 10 km de la meta.',
+      category: 'comparación',
     },
     {
       id: '15-10',
-      text: 'Es el doble de 16 384: un salto más en la escalera binaria.',
-      category: 'matemáticas',
+      text: '32 768 bits son 4 KiB: una página de memoria escondida dentro de este número.',
+      category: 'tecnología',
     },
   ],
   16: [
@@ -872,13 +872,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '16-8',
-      text: '16 bits representan exactamente 65 536 valores.',
-      category: 'datos',
+      text: 'Hay 65 536 puertos TCP y UDP (del 0 al 65 535): por eso el 80 y el 443 hay que compartirlos entre todo Internet.',
+      category: 'tecnología',
     },
     {
       id: '16-9',
-      text: '65.536 en notación española.',
-      category: 'usos',
+      text: 'El 8086 de Intel, el abuelo de los PC, era de 16 bits y veía la memoria en trozos de 64 KiB: este número era su horizonte.',
+      category: 'historia',
     },
     {
       id: '16-10',
@@ -948,8 +948,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '19-4',
-      text: '524 288 es exactamente medio mebibyte: la mitad de 1 048 576.',
-      category: 'matemáticas',
+      text: '524 288 segundos son 6,1 días: una semana laboral contando sin dormir.',
+      category: 'tiempo',
     },
   ],
   20: [
@@ -980,23 +980,23 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '20-6',
-      text: '2²⁰ = 1 048 576. Veinte duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: 'Un millón de granos de arroz pesan unos 25 kg; 1 048 576 granos son un saco de unos 26 kg: un costal de mercado.',
+      category: 'comparación',
     },
     {
       id: '20-7',
-      text: '20 bits representan 1 048 576 valores.',
-      category: 'datos',
+      text: '1 048 576 segundos son 12,1 días. Un millón de segundos son 11,6 días: el «millón binario» apenas dura medio día más.',
+      category: 'tiempo',
     },
     {
       id: '20-8',
-      text: '1.048.576 en notación española con puntos de miles.',
-      category: 'usos',
+      text: 'Un disquete de 1,44 MB guarda un 40 % más que 1 MiB: por eso «1,44» parecía un número tan raro.',
+      category: 'historia',
     },
     {
       id: '20-9',
-      text: 'Es el doble de 524 288 y la mitad de 2 097 152.',
-      category: 'matemáticas',
+      text: 'En Excel clásico había 65 536 filas (2¹⁶), no un millón: el millón de filas llegó en 2007.',
+      category: 'historia',
     },
     {
       id: '20-10',
@@ -1088,8 +1088,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '24-4',
-      text: 'Los colores de la web escritos como #RRGGBB pueden expresar exactamente 16 777 216 combinaciones.',
-      category: 'usos',
+      text: 'El ojo humano distingue unos 10 millones de colores: menos que los 16,7 millones del RGB, por eso dos tonos vecinos a veces se ven iguales.',
+      category: 'ciencia',
     },
   ],
   25: [
@@ -1220,13 +1220,13 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '30-4',
-      text: '2³⁰ = 1 073 741 824. Treinta duplicaciones desde 1.',
-      category: 'matemáticas',
+      text: '1 GiB de texto plano son unos 200 millones de palabras: cientos de novelas, toda una biblioteca de bolsillo.',
+      category: 'usos',
     },
     {
       id: '30-5',
-      text: '30 bits representan 1 073 741 824 valores.',
-      category: 'datos',
+      text: 'A finales de los 90, un disco duro de 1 GB era un anuncio a toda página: este número era «espacio infinito».',
+      category: 'historia',
     },
     {
       id: '30-6',
@@ -1235,8 +1235,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '30-7',
-      text: 'En notación científica aproximada: 1,074 × 10⁹.',
-      category: 'matemáticas',
+      text: 'Un segundo de vídeo 4K sin comprimir puede pesar cerca de 1 GB: este número, en bruto, es un parpadeo de película.',
+      category: 'tecnología',
     },
     {
       id: '30-8',
@@ -1250,8 +1250,8 @@ export const CURATED_FACTS: Record<number, Fact[]> = {
     },
     {
       id: '30-10',
-      text: 'En binario sería 1 seguido de 30 ceros: demasiado largo para leerlo de un vistazo.',
-      category: 'tecnología',
+      text: 'El límite de 2 GB de RAM que sufrían Windows 95 y 98 está en 2³¹, exactamente el doble de este número.',
+      category: 'historia',
     },
   ],
 };

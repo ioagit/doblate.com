@@ -63,15 +63,25 @@ body {
   color: var(--text);
   line-height: 1.5;
   background-color: #2c0a63;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Artwork stays viewport-sized so long pages never zoom-crop the illustration */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #2c0a63;
   background-image: url('/bg-space.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  -webkit-font-smoothing: antialiased;
 }
 
 /* Keeps copy readable wherever the artwork crops light */
-body::before {
+body::after {
   content: '';
   position: fixed;
   inset: 0;
@@ -138,12 +148,19 @@ a.level-chip {
   flex-direction: column;
 }
 
-/* Pages are documents now: they start at the top and grow as long as needed */
 .app-shell > main {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: clamp(0.85rem, 2.2vh, 1.6rem);
+}
+
+.app-shell-home > main {
+  justify-content: center;
+}
+
+.app-shell-home .app-footer {
+  display: none;
 }
 
 /* ---------- Header ---------- */
@@ -1471,50 +1488,6 @@ a.level-chip {
 
 .levels-table tbody tr:hover {
   background: rgba(233, 224, 255, 0.05);
-}
-
-/* ---------- Home prose ---------- */
-
-.home-intro {
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-.home-intro p {
-  margin: 0 0 0.8rem;
-  max-width: 46rem;
-}
-
-.quick-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0 0 0.6rem;
-  padding: 0;
-  list-style: none;
-}
-
-.quick-links a {
-  display: inline-block;
-  padding: 0.35rem 0.8rem;
-  border-radius: var(--radius-pill);
-  background: var(--panel-inset);
-  border: 2px solid var(--stroke);
-  color: var(--text);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-.quick-links a:hover {
-  border-color: var(--stroke-strong);
-  color: var(--gold);
-}
-
-.home-intro > p > a {
-  color: var(--gold);
-  font-weight: 700;
 }
 
 /* ---------- Footer ---------- */

@@ -35,7 +35,7 @@ export const AppShell = () => {
 
   return (
     <SoundProvider enabled={soundEnabled}>
-      <div className={`app-shell${reduceMotion ? ' reduce-motion' : ''}`}>
+      <div className={`app-shell${reduceMotion ? ' reduce-motion' : ''}${route.kind === 'home' ? ' app-shell-home' : ''}`}>
         <header className="app-header">
           <div className="header-side">
             {route.kind !== 'home' && (
